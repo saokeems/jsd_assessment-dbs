@@ -6,6 +6,32 @@
 // Hint: Write a query to find all orders handled by the staff member "Jane Doe".
 // Your query should only return the order_date and total_price fields for these orders.
 
+use("chrome-burger-db");
+
+db.orders.aggregate([
+  {
+    $lookup: {
+      from: "staff",
+      localField: "staff_id",
+      foreignField: "_id",
+      as: "staff_info",
+    },
+  },
+  {
+    $match: {
+      "staff_info.first_name": "Jane",
+      "staff_info.last_name": "Doe",
+    },
+  },
+  {
+    $project: {
+      order_date: 1,
+      total_price: 1,
+      _id: 0,
+    },
+  },
+]);
+
 // Bonus: The dataset is identical in the PostgreSQL database, meaning the same business insight can be retrieved.
 // Write the equivalent query for PostgreSQL. See query_task2_bonus.sql
 
@@ -18,4 +44,11 @@
 // Write in English or Thai. Do not skip this step.
 //
 // Your thinking:
-//
+// ในขั้นแรกเหมือนเดิม เลือกใช้ cluster0 ที่มีตัว chrome-burger-db 
+// แล้้วเลือกใช้ use chrome-burger-db 
+// จากโจทย์ต้องการให้แสดง orders ที่จัดการโดย "Jane Doe"
+// ตัวผมเลยเลือกที่จะใช้คำสั่ง aggregate เนื่องจากภายในตัว orders ไม่มี field ที่แสดงชื่อ "Jane Doe" โดยตรง
+// เลยเลือก aggregate เข้ากับตัวของ staff เพื่อเชื่อมข้อมูลเข้าด้วยกัน
+// แล้วให้ match กันโดยที่ให้ match ทั้ง first_name และ last_name ให้ตรงกัน
+// โจทย์ต้องการให้แสดงแค่ field order_date และ total_price จึงเลือกให้สแดงเฉพาะโดยใช้คำสั่ง $project
+// ในวิธีคิดผมคิดออก แต่ในส่วนของการเขียน query ผมคิดออกถึงแค่ส่วนของการ aggregate เลยใช้ ai ไกด์ในส่วนของ match และ project
