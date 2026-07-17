@@ -7,6 +7,18 @@
 //
 // Hint: Write a query on the staff collection to find the first_name and last_name
 // of all documents where the role is 'Cook'.
+use("chrome-burger-db");
+
+db.staff.find(
+  {
+    role: "Cook",
+  },
+  {
+    first_name: 1,
+    last_name: 1,
+    _id: 0,
+  },
+);
 
 // ---------------------------------------------------------------
 // Your thinking process (required)
@@ -17,4 +29,7 @@
 // Write in English or Thai. Do not skip this step.
 //
 // Your thinking:
-//
+// โจทย์ต้องการให้แสดงชื่อและสนามของคนที่มี role = 'Cook'
+// เข้าไปเช็คใน collection staff ก่อนว่ามี field อะไรบ้าง
+// จากนั้นก็จะทำการค้นหาตามที่โจทย์กำหนด
+// พอได้ข้อมูลแล้ว ก็จะทำการกำหนดให้แสดงเฉพาะ field first_name กับ last_name ออกมา

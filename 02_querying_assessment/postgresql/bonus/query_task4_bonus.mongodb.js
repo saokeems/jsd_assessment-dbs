@@ -10,6 +10,30 @@
 // collection, then filter where the supplier name is 'Freshest Farm Produce' and return
 // only the ingredient names.
 
+use("chrome-burger-db");
+
+db.ingredients.aggregate([
+  {
+    $lookup: {
+      from: "suppliers",
+      localField: "supplier_id",
+      foreignField: "_id",
+      as: "suppliers_info",
+    },
+  },
+  {
+    $match: {
+      "suppliers_info.name": "Freshest Farm Produce",
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+    },
+  },
+]);
+
 // ---------------------------------------------------------------
 // Your thinking process (required)
 // ---------------------------------------------------------------
@@ -19,4 +43,8 @@
 // Write in English or Thai. Do not skip this step.
 //
 // Your thinking:
-//
+// โจทย์ต้องการให้แสดงชื่อวัตถุดิบที่ได้มาจาก "Freshest Farm Produce"
+// ซึ่งในตัวของ collection ingredients ไม่มี ชื่อของ suppliers
+// ดังนั้นเราเลยต้อง aggregate และ lookup ไปยัง collection suppliers
+// จากนั้นก็ให้มัน match กับชื่อของ "Freshest Farm Produce"
+// และทำการให้มันแสดงเฉพาะชื่อของ ingredients ออกมา

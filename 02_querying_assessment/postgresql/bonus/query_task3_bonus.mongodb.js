@@ -9,6 +9,31 @@
 // per staff member. Each order embeds the staff member's first and last name directly.
 // The result should show each staff member's full name and their total order count,
 // ordered by the count in descending order.
+use("chrome-burger-db");
+
+db.orders.aggregate([
+  {
+    $group: {
+      _id: {
+        first_name: "$staff.first_name",
+        last_name: "$staff.last_name",
+      },
+      order_count: { $sum: 1 },
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+      full_name: { $concat: ["$_id.first_name", " ", "$_id.last_name"] },
+      order_count: 1,
+    },
+  },
+  {
+    $sort: {
+      order_count: -1,
+    },
+  },
+]);
 
 // ---------------------------------------------------------------
 // Your thinking process (required)
@@ -19,4 +44,10 @@
 // Write in English or Thai. Do not skip this step.
 //
 // Your thinking:
-//
+// โจทย์ต้องการให้แสดงชื่อ นามสกุล และเรียงลำดับจำนวน order จากมากไปน้อย
+// ใช้การ aggregate collection orders
+// จากนั้นก็ group โดย group ทั้ง first_name และ last_name
+// และให้รวมจำนวน orders ที่เหมือนกัน
+// โจทย์อยากให้แสดงเป็น ชื่อเต็ม full_name และจำนวน order ก็ให้แสดงเฉพาะ
+// ทำการรวม first_name และ last_name เข้าด้วยกัน
+// จากนั้นก็เรียงลำดับจาก order มากไปหาน้อย

@@ -7,6 +7,9 @@
 //
 // Hint: Write a query on the menu_items collection to find the name and price
 // of all documents where the category is 'Side'.
+use("chrome-burger-db");
+
+db.menu_items.find({ category: "Side" }, { name: 1, price: 1, _id: 0 });
 
 // ---------------------------------------------------------------
 // Your thinking process (required)
@@ -17,4 +20,7 @@
 // Write in English or Thai. Do not skip this step.
 //
 // Your thinking:
-//
+// โจทย์ต้องการหาข้อมูล ที่มี category เป็น "Side"
+// เข้าไปเช็คใน collection menu_items ก่อนว่ามี field อะไรบ้าง
+// จากนั้นก็จะทำการค้นหาตามที่โจทย์กำหนด
+// โดยที่ตัวโจทย์อยากให้แสดงเป็น name และ price เราก็จะทำแสดงเฉพาะ name และ price
