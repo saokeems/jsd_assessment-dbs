@@ -8,14 +8,26 @@
 -- Hint: Write a query to find the order_date and total_price from the Orders table
 -- for all orders handled by Jane Doe. You will need to join with the Staff table
 -- to filter by the staff member's name.
-
--- ---------------------------------------------------------------
--- Your thinking process (required)
--- ---------------------------------------------------------------
--- Before writing your query, explain in your own words how you
--- interpreted the task, what data you need, which table(s) are
--- involved, and what SQL concepts you plan to use.
--- Write in English or Thai. Do not skip this step.
---
--- Your thinking:
---
+SELECT
+  order_date,
+  total_price
+FROM
+  orders
+  INNER JOIN staff ON staff.staff_id = orders.staff_id
+WHERE
+  staff.first_name = 'Jane'
+  AND staff.last_name = 'Doe'
+  -- ---------------------------------------------------------------
+  -- Your thinking process (required)
+  -- ---------------------------------------------------------------
+  -- Before writing your query, explain in your own words how you
+  -- interpreted the task, what data you need, which table(s) are
+  -- involved, and what SQL concepts you plan to use.
+  -- Write in English or Thai. Do not skip this step.
+  --
+  -- Your thinking:
+  -- โจทย์ต้องการให้แสดง column order_date และ total_price ที่มาจากชื่อ "Jane Doe"
+  -- เข้าไปเช็คข้อมูลในตาราง staff และ orders
+  -- เราก็เลือกแสดงเฉพาะตาราง column order_date และ total_price
+  -- จากนั้นก็ทำการ JOIN ตาราง orders กับ staff เข้าด้วยกัน โดยอิงตาม staff_id
+  -- และก็ตั้งเงื่อนไขให้แสดงข้อมูล ที่มี first_name, last_name ให้ตรงกับ "Jane Doe"

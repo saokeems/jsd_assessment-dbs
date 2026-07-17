@@ -7,6 +7,12 @@
 --
 -- Hint: Write a query to find the name of all rows in the Ingredients table
 -- where the stock_level is greater than or equal to 100.
+SELECT
+  name, stock_level
+FROM
+  ingredients
+WHERE
+  stock_level >= 100;
 
 -- ---------------------------------------------------------------
 -- Your thinking process (required)
@@ -17,4 +23,7 @@
 -- Write in English or Thai. Do not skip this step.
 --
 -- Your thinking:
---
+-- โจทย์ต้องการให้แสดงชื่อของ ingredients ที่มีมากกว่าเท่ากับ 100
+-- ทำการเช็คข้อมูล column ในตาราง ingredient 
+-- ทำการเลือก column ที่จะแสดง โดยในข้อนี้ผมเลือกที่จะแสดง name, stock_level เพื่อที่จะได้รู้ทั้งชื่อและ จำนวนที่เหลือ
+-- จากนั้นก็ตั้งเงื่อนไขว่าให้แสดงเฉพาะ stock_level >= 100

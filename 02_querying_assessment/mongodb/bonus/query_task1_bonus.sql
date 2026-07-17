@@ -7,6 +7,13 @@
 --
 -- Hint: Write a query to find the name and price of all rows in the MenuItems table
 -- where the price is less than 10.
+SELECT
+  name,
+  price
+FROM
+  menuitems
+WHERE
+  price < 10;
 
 -- ---------------------------------------------------------------
 -- Your thinking process (required)
@@ -17,4 +24,6 @@
 -- Write in English or Thai. Do not skip this step.
 --
 -- Your thinking:
---
+-- โจทย์ต้องการให้แสดง item และ price ที่มีราคาน้อย 10
+-- เราก็จะทำการเลือก column name และ price
+-- และใส่เงื่อนไขว่าต้องน้อยกว่า 10
