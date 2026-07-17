@@ -4,10 +4,16 @@
 -- whose role is 'Cook' so they can be contacted directly.
 --
 -- Hint: Write a query to list the first_name and last_name of all staff members whose role is 'Cook'.
+SELECT
+  first_name,
+  last_name
+FROM
+  staff
+WHERE
+  role = 'Cook';
 
 -- Bonus: The dataset is identical in the MongoDB database, meaning the same business insight can be retrieved.
 -- Write the equivalent query for MongoDB. See query_task2_bonus.mongodb.js
-
 -- ---------------------------------------------------------------
 -- Your thinking process (required)
 -- ---------------------------------------------------------------
@@ -17,4 +23,6 @@
 -- Write in English or Thai. Do not skip this step.
 --
 -- Your thinking:
---
+-- จากโจทย์ต้องการให้เราแสดง first_name และ last_name ของคนที่ทำหน้าที่เป็น "Cook"
+-- เช็คในตาราง staff ก่อนเป็นอย่างแรกว่ามี column เป็นชื่ออะไรบ้าง 
+-- จากนั้นก็จะทำการ SELECT เฉพาะ column first_name และ last_name จากตาราง staff โดยให้อิงจาก role = "Cook"
